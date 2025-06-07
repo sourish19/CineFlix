@@ -44,7 +44,9 @@ const movies = [
     rating: 3.4,
     description: descContent,
     genre: ["action", "drama"],
-    image: "./public/fast & furious.webp",
+    image: "./public/not-found-image.jpg",
     releaseYear: 2004,
   },
 ];
+
+export { movies, descContent };

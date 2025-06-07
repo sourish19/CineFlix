@@ -11,6 +11,12 @@
     @apply text-2xl font-medium;
   }
   .movie-desc {
-    @apply line-clamp-3 text-sm;
+    @apply line-clamp-3 text-sm text-gray-800;
+  }
+  .movie-meta {
+    @apply text-[15px] font-bold;
+  }
+  .movie-meta-content {
+    @apply text-[15px] font-normal text-gray-800;
   }
 }
