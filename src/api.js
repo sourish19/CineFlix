@@ -8,7 +8,7 @@ const movies = [
     rating: 4.6,
     description: descContent,
     genre: ["action", "scifi", "drama"],
-    image: "./image/intersteller.jpg",
+    image: "./public/interstellar.jpeg",
     releaseYear: 2014,
   },
   {
@@ -17,7 +17,7 @@ const movies = [
     rating: 2.7,
     description: descContent,
     genre: ["action", "comedy"],
-    image: "./image/bad-boys.jpg",
+    image: "./public/bad_boys.jpeg",
     releaseYear: 2007,
   },
   {
@@ -26,7 +26,7 @@ const movies = [
     rating: 4.2,
     description: descContent,
     genre: ["action", "scifi", "fantacy"],
-    image: "",
+    image: "./public/inception.jpeg",
     releaseYear: 2010,
   },
   {
@@ -35,7 +35,7 @@ const movies = [
     rating: 3.8,
     description: descContent,
     genre: ["action", "drama"],
-    image: "",
+    image: "./public/bahubali.jpeg",
     releaseYear: 2015,
   },
   {
@@ -44,7 +44,7 @@ const movies = [
     rating: 3.4,
     description: descContent,
     genre: ["action", "drama"],
-    image: "",
+    image: "./public/fast & furious.webp",
     releaseYear: 2004,
   },
 ];

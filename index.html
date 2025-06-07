@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineFlix</title>
   </head>
-  <body class="h-screen flex justify-center items-center">
+  <body class="min-h-screen flex justify-center items-center">
     <!-- Main Container -->
     <div
-      class="main-container border-2 border-gray-800 shadow-2xl h-11/12 w-11/12 rounded-2xl flex flex-col"
+      class="main-container border-2 border-gray-800 shadow-2xl h-11/12 w-11/12 rounded-2xl flex flex-col my-10"
     >
       <!-- Nav Container starts-->
       <nav class="nav-bar-container border-b-2 border-gray-700">
@@ -84,16 +84,110 @@
       <!-- Filter section ends here -->
       <!-- Movie Card Sections -->
       <section
-        class="grid grid-cols-4 gap-2 justify-around items-start py-5 px-4 h-fit flex-1 rounded-b-2xl"
+        class="grid grid-cols-4 gap-4 justify-around items-start py-5 px-4 flex-1 rounded-b-2xl"
       >
+        <!-- Card 1 starts here  -->
         <div class="movie-card">
-          <img src="./public/interstellar.jpeg" alt="" class="w-xl" />
+          <img src="./public/interstellar.jpeg" alt="" class="movi-img" />
+          <div
+            class="movie-details-container flex gap-1.5 flex-col border-y-2 my-2"
+          >
+            <div class="movie-name">Interstellar</div>
+            <div class="movie-desc">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus
+              quos officiis cupiditate sunt dolorem velit id laboriosam ratione
+              saepe voluptas.
+            </div>
+            <div class="movie-genre">Genre</div>
+            <div class="movie-release-year">Release Year</div>
+            <div class="movie-rating">Rating</div>
+          </div>
+          <div class="flex justify-end gap-2 items-center">
+            <button class="bttn">Details</button>
+            <button class="bttn">Delete</button>
+          </div>
         </div>
-        <div class="movie-card">n</div>
-        <div class="movie-card">n</div>
-        <div class="movie-card">n</div>
+        <!-- Card 1 ends here  -->
+        <!-- Card 2 starts here  -->
+        <div class="movie-card">
+          <img src="./public/interstellar.jpeg" alt="" class="movi-img" />
+          <div
+            class="movie-details-container flex gap-1.5 flex-col border-y-2 my-2"
+          >
+            <div class="movie-name">Interstellar</div>
+            <div class="movie-desc">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus
+              quos officiis cupiditate sunt dolorem velit id laboriosam ratione
+              saepe voluptas.
+            </div>
+            <div class="movie-genre">Genre</div>
+            <div class="movie-release-year">Release Year</div>
+            <div class="movie-rating">Rating</div>
+          </div>
+          <div class="flex justify-end gap-2 items-center">
+            <button class="bttn">Details</button>
+            <button class="bttn">Delete</button>
+          </div>
+        </div>
+        <!-- Card 2 ends here  -->
+        <div class="movie-card">
+          <img src="./public/interstellar.jpeg" alt="" class="movi-img" />
+          <div
+            class="movie-details-container flex gap-1.5 flex-col border-y-2 my-2"
+          >
+            <div class="movie-name">Interstellar</div>
+            <div class="movie-desc">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus
+              quos officiis cupiditate sunt dolorem velit id laboriosam ratione
+              saepe voluptas.
+            </div>
+            <div class="movie-genre">Genre</div>
+            <div class="movie-release-year">Release Year</div>
+            <div class="movie-rating">Rating</div>
+          </div>
+          <div class="flex justify-end gap-2 items-center">
+            <button class="bttn">Details</button>
+            <button class="bttn">Delete</button>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="./public/interstellar.jpeg" alt="" class="movi-img" />
+          <div
+            class="movie-details-container flex gap-1.5 flex-col border-y-2 my-2"
+          >
+            <div class="movie-name">Interstellar</div>
+            <div class="movie-desc">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus
+              quos officiis cupiditate sunt dolorem velit id laboriosam ratione
+              saepe voluptas.
+            </div>
+            <div class="movie-genre">Genre</div>
+            <div class="movie-release-year">Release Year</div>
+            <div class="movie-rating">Rating</div>
+          </div>
+          <div class="flex justify-end gap-2 items-center">
+            <button class="bttn">Details</button>
+            <button class="bttn">Delete</button>
+          </div>
+        </div>
       </section>
     </div>
+
+    <!-- Modal Menu for Creating Movie -->
+    <div
+      class="modal-container fixed transform -translate-x-1/2 -translate-y-1/2 top-[50%] left-[50%] bg-gray-500 text-white w-5/12 h-10/12 py-4 px-5"
+    >
+      <!-- Movie Creating Heading -->
+      <div class="border-b-2 border-gray-800">
+        <div class="text-right"><i class="fa-solid fa-xmark"></i></div>
+        <div class="mt-2 mb-2 text-2xl">Create Movie</div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.js"></script>
+    <script
+      src="https://kit.fontawesome.com/ac077fd17e.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
