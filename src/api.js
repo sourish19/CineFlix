@@ -1,5 +1,6 @@
 const descContent =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.";
+const genre = ["all", "action", "scifi", "drama", "comedy"];
 
 const movies = [
   {
@@ -8,7 +9,7 @@ const movies = [
     rating: 4.6,
     description: descContent,
     genre: ["action", "scifi", "drama"],
-    image: "./public/interstellar.jpeg",
+    image: "./interstellar.jpeg",
     releaseYear: 2014,
   },
   {
@@ -17,7 +18,7 @@ const movies = [
     rating: 2.7,
     description: descContent,
     genre: ["action", "comedy"],
-    image: "./public/bad_boys.jpeg",
+    image: "./bad_boys.jpeg",
     releaseYear: 2007,
   },
   {
@@ -26,7 +27,7 @@ const movies = [
     rating: 4.2,
     description: descContent,
     genre: ["action", "scifi", "fantacy"],
-    image: "./public/inception.jpeg",
+    image: "./inception.jpeg",
     releaseYear: 2010,
   },
   {
@@ -35,7 +36,7 @@ const movies = [
     rating: 3.8,
     description: descContent,
     genre: ["action", "drama"],
-    image: "./public/bahubali.jpeg",
+    image: "./bahubali.jpeg",
     releaseYear: 2015,
   },
   {
@@ -44,9 +45,9 @@ const movies = [
     rating: 3.4,
     description: descContent,
     genre: ["action", "drama"],
-    image: "./public/not-found-image.jpg",
+    image: "./not-found-image.jpg",
     releaseYear: 2004,
   },
 ];
 
-export { movies, descContent };
+export { movies, genre };
