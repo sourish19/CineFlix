@@ -1,5 +1,6 @@
 import { movies, genre } from "./api.js";
 
+const body = document.getElementsByTagName("body");
 const mainContainer = document.querySelector(".main-container");
 const movieCardContainer = document.querySelector(".movie-card-container");
 const createMovieBttn = document.querySelector(".create-movie-bttn");
@@ -116,30 +117,23 @@ const defaultImage = (image) => {
   return image || "./not-found-image.jpg";
 };
 
-// Remove Modal Container
-const removeModalContainer = (container) => {
-  container.classList.toggle("hidden", true);
-  mainContainer.classList.toggle("opacity-10", false);
-  mainContainer.classList.toggle("backdrop-blur", false);
-  mainContainer.classList.toggle("bg-black/50", false);
-};
-
-// Show Modal Container
-const showModalContainer = (container) => {
-  container.classList.toggle("hidden", false);
-  mainContainer.classList.toggle("opacity-10", true);
-  mainContainer.classList.toggle("backdrop-blur", true);
-  mainContainer.classList.toggle("bg-black/50", true);
+// Show & Remove Modal Container
+const globalModalContainer = (val1, val2, val3) => {
+  mainContainer.classList.toggle("opacity-10", val1);
+  mainContainer.classList.toggle("backdrop-blur", val2);
+  mainContainer.classList.toggle("bg-black/50", val3);
 };
 
 // Remove Modal Container Event
 crossBttn.addEventListener("click", () => {
-  removeModalContainer(modalContainer);
+  modalContainer.classList.toggle("hidden", true);
+  globalModalContainer(false, false, false);
 });
 
 // Show Modal Container Event
 createMovieBttn.addEventListener("click", (e) => {
-  showModalContainer(modalContainer);
+  modalContainer.classList.toggle("hidden", false);
+  globalModalContainer(true, true, true);
 });
 
 // Get Modal Movie Genre
@@ -176,15 +170,14 @@ movieCreateBttn.addEventListener("click", () => {
       createModalMovieRating,
       createModalMovieDesc
     );
-    removeModalContainer(modalContainer);
+    modalContainer.classList.toggle("hidden", true);
+    globalModalContainer(false, false, false);
   }
 });
 
 // Global Event Listner
 const globalEventListner = (eventType, selector, callback) => {
   document.addEventListener(eventType, (event) => {
-    console.log(event.target);
-
     if (event.target.matches(selector)) {
       callback(event);
     }
@@ -201,50 +194,54 @@ globalEventListner("click", ".dele-bttn", (e) => {
 });
 
 // Details Movie Card
-const detailsModalMovieCard = () => {
+const detailsModalMovieCard = (
+  parentDivMovieId,
+  parentDivMovieImage,
+  parentDivMovieName,
+  parentDivMovieDesc,
+  parentDivMovieGenre,
+  parentDivMovieYear,
+  parentDivMovieRating
+) => {
   const div = document.createElement("div");
   div.innerHTML = `<div
       class="details-modal-container fixed transform -translate-x-1/2 -translate-y-1/2 top-[50%] left-[50%] bg-gray-500 text-white w-5/12 h-[78%] py-4 px-5"
-    >
+    id = "details-movie-${parentDivMovieId}">
       <div class="px-3 py-3 flex flex-col min-h-[460px]">
-        <div class="details-cross-bttn text-right">
-          <i class="fa-solid fa-xmark"></i>
+        <div class="text-right">
+          <i class="details-cross-bttn fa-solid fa-xmark"></i>
         </div>
         <img
-          src="./interstellar.jpeg"
+          src="${parentDivMovieImage}"
           alt=""
           class="movie-img h-50 object-cover"
         />
         <div
           class="movie-details-container flex gap-1.5 flex-col border-y-2 my-2"
         >
-          <div class="details-movie-name movie-name">Interstellar</div>
+          <div class="details-movie-name movie-name">${parentDivMovieName}</div>
           <div class="details-movie-desc text-sm text-gray-800">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus
-            quos officiis cupiditate sunt dolorem velit id laboriosam ratione
-            saepe voluptas. Lorem, ipsum dolor sit amet consectetur adipisicing
-            elit. Voluptate sapiente provident optio magni dolores. Nemo facere,
-            quo mollitia aliquam, harum iure minus tempora praesentium corporis
-            iste aperiam architecto aspernatur dolorum!
+            ${parentDivMovieDesc}
           </div>
           <div class="movie-meta movie-genre">
             Genre:
             <span class="details-movie-meta-genre movie-meta-content"
-              >action,comedy</span
+              >${parentDivMovieGenre} </span
             >
           </div>
           <div class="movie-meta">
             Release Year:
-            <span class="details-movie-meta-year movie-meta-content">2003</span>
+            <span class="details-movie-meta-year movie-meta-content">${parentDivMovieYear} </span>
           </div>
           <div class="movie-meta">
             Rating:
-            <span class="details-movie-meta-rating movie-meta-content">2</span>
+            <span class="details-movie-meta-rating movie-meta-content">${parentDivMovieRating} </span>
           </div>
         </div>
       </div>
     </div>`;
-  mainContainer.append(div);
+  globalModalContainer(true, true, true);
+  body[0].append(div);
 };
 
 // Details Movie Card Event
@@ -262,21 +259,23 @@ globalEventListner("click", ".details-bttn", (e) => {
   const parentDivMovieRating = parentDiv.querySelector(
     ".movie-rating-content"
   ).innerHTML;
-  // console.log(
-  //   parentDivMovieImage,
-  //   parentDivMovieName,
-  //   parentDivMovieDesc,
-  //   parentDivMovieGenre,
-  //   parentDivMovieYear,
-  //   parentDivMovieRating
-  // );
-  detailsModalMovieCard();
+  detailsModalMovieCard(
+    parentDiv.id,
+    parentDivMovieImage,
+    parentDivMovieName,
+    parentDivMovieDesc,
+    parentDivMovieGenre,
+    parentDivMovieYear,
+    parentDivMovieRating
+  );
 });
 
+// Remove Details Movie Card
 globalEventListner("click", ".details-cross-bttn", (e) => {
-  if (e.target.matches(".details.cross-bttn")) {
-    console.log("hii");
-  }
+  const modalDetailsCard = e.target.closest(".details-modal-container");
+  globalModalContainer(false, false, false);
+  modalDetailsCard.remove();
 });
+
 // Render Movies from API function call
 getMoviesFromApi();
