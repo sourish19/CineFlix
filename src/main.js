@@ -159,13 +159,25 @@ movieCreateBttn.addEventListener("click", () => {
   ) {
     alert("Please Enter all the details for creating a Movie");
   } else {
+    const createModalMovieId = Math.floor(
+      Math.random() * (10000 - movies.length) + movies.length
+    );
     const createModalMovieName = movieCreateName.value;
     const createModalMovieDesc = movieCreateDesc.value;
     const createModalMovieRating = Number(movieCreateRating.value);
     const createModalMovieYear = movieCreateYear.value;
     const createModalMovieGenre = getMovieGenre();
+    movies.push({
+      id: createModalMovieId,
+      name: createModalMovieName,
+      rating: createModalMovieRating,
+      description: createModalMovieDesc,
+      genre: createModalMovieGenre.split(","),
+      image: "",
+      releaseYear: createModalMovieYear,
+    });
     renderMovies(
-      10,
+      createModalMovieId,
       createModalMovieName,
       createModalMovieGenre,
       createModalMovieYear,
@@ -188,9 +200,16 @@ const globalEventListner = (eventType, selector, callback) => {
 
 // Delete Movie Card
 globalEventListner("click", ".dele-bttn", (e) => {
-  const confirmDelete = confirm("Do you want to delete this movie");
+  const confirmDelete = confirm("This movie will get permanently deleted");
   if (confirmDelete === true) {
     const parentDivCard = e.target.closest(".movie-card");
+    const deletedMovieId = parentDivCard.id.slice(5);
+    const index = movies.findIndex((val) => {
+      if (val.id == deletedMovieId) {
+        return val;
+      }
+    });
+    movies.splice(index, 1);
     parentDivCard.remove();
   }
 });
