@@ -5,6 +5,7 @@ const mainContainer = document.querySelector(".main-container");
 const movieCardContainer = document.querySelector(".movie-card-container");
 const createMovieBttn = document.querySelector(".create-movie-bttn");
 const ratingsBttn = document.querySelector(".ratingBttn");
+const releaseBttn = document.querySelector(".releaseBttn");
 
 const modalContainer = document.querySelector(".modal-container");
 const crossBttn = document.querySelector(".cross-bttn");
@@ -14,6 +15,7 @@ const movieCreateRating = document.querySelector("#movie-create-rating");
 const movieCreateYear = document.querySelector("#movie-create-year");
 const movieCreateBttn = document.querySelector(".movie-create-bttn");
 
+// Render all movies
 const renderMovies = (
   movieId,
   movieTitle,
@@ -49,9 +51,9 @@ const renderMovies = (
               </div>
               <div class="movie-meta movie-rating">
                 Rating:
-                <span class="movie-meta-content movie-rating-content">${displayRatings(
-                  movieRating
-                )}</span>
+                <span class=" movie-meta-content movie-rating-content" value ="${movieRating}">${displayRatings(
+    movieRating
+  )}</span>
               </div>
             </div>
             <div class="flex justify-end gap-2 items-center">
@@ -61,8 +63,8 @@ const renderMovies = (
   movieCardContainer.append(div);
 };
 
-// Render all movies
-const getMoviesFromApi = () => {
+// Get all movies
+const getMoviesFromApi = (movies) => {
   movies.forEach((movie) => {
     let movieId = movie.id;
     let movieTitle = movie.name;
@@ -277,5 +279,25 @@ globalEventListner("click", ".details-cross-bttn", (e) => {
   modalDetailsCard.remove();
 });
 
+// Sort by Movie Rating
+ratingsBttn.addEventListener("click", () => {
+  const sortedMovies = [...movies];
+  sortedMovies.sort((a, b) => {
+    return b.rating - a.rating;
+  });
+  movieCardContainer.innerHTML = "";
+  getMoviesFromApi(sortedMovies);
+});
+
+// Sort by Movie Release Year
+releaseBttn.addEventListener("click", () => {
+  const sortedMovies = [...movies];
+  sortedMovies.sort((a, b) => {
+    return b.releaseYear - a.releaseYear;
+  });
+  movieCardContainer.innerHTML = "";
+  getMoviesFromApi(sortedMovies);
+});
+
 // Render Movies from API function call
-getMoviesFromApi();
+getMoviesFromApi(movies);
