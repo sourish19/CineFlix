@@ -6,6 +6,10 @@ const movieCardContainer = document.querySelector(".movie-card-container");
 const createMovieBttn = document.querySelector(".create-movie-bttn");
 const ratingsBttn = document.querySelector(".ratingBttn");
 const releaseBttn = document.querySelector(".releaseBttn");
+const searchBar = document.querySelector("#search-bar");
+const filterByGenreRadio = document.querySelectorAll(
+  'input[name="filterRadioBttn"]'
+);
 
 const modalContainer = document.querySelector(".modal-container");
 const crossBttn = document.querySelector(".cross-bttn");
@@ -35,7 +39,7 @@ const renderMovies = (
             <div
               class="movie-details-container flex gap-1.5 flex-col border-y-2 my-2"
             >
-              <div class="bb movie-name">${formatMovieTitle(movieTitle)}</div>
+              <div class="movie-name">${formatMovieTitle(movieTitle)}</div>
               <div class="movie-desc">${movieDesc}</div>
               <div class="movie-meta movie-genre">
                 Genre:
@@ -316,6 +320,55 @@ releaseBttn.addEventListener("click", () => {
   });
   movieCardContainer.innerHTML = "";
   getMoviesFromApi(sortedMovies);
+});
+
+// Search Functionality
+const search = (name, word) => {
+  const movie = document.querySelectorAll(name);
+  movie.forEach((element) => {
+    const searchText = element.innerHTML.toLowerCase();
+    const isVisible = searchText.includes(word.toLowerCase());
+    element.closest(".movie-card").classList.toggle("hidden", !isVisible);
+  });
+};
+
+// Search Bar Event
+searchBar.addEventListener("input", (word) => {
+  search(".movie-name", word.target.value);
+});
+
+// Filter Movies By Genre
+filterByGenreRadio.forEach((radio) => {
+  radio.addEventListener("click", (e) => {
+    let filteredMovies = [];
+    if (e.target.value === "all") {
+      filteredMovies = movies.genre;
+    } else {
+      movieCardContainer.innerHTML = "";
+      filteredMovies = movies.filter((movie) =>
+        movie.genre.includes(e.target.value)
+      );
+    }
+    filteredMovies.forEach((movie) => {
+      let movieId = movie.id;
+      let movieTitle = movie.name;
+      let movieImage = movie.image;
+      let movieGenre = movie.genre;
+      let movieRelease = movie.releaseYear;
+      let movieRating = movie.rating;
+      let movieDesc = movie.description;
+
+      renderMovies(
+        movieId,
+        movieTitle,
+        movieGenre,
+        movieRelease,
+        movieRating,
+        movieDesc,
+        movieImage
+      );
+    });
+  });
 });
 
 // Render Movies from API function call
